@@ -75,6 +75,7 @@ Also flag suspicious patterns:
 - logic changes without tests
 - unexplained config changes
 - self-reverts or near-term corrections
+- code that disables, hides, gates, marks unavailable, or removes options after a single transient API/browser/tool failure
 
 Cross-reference each commit against:
 
@@ -98,6 +99,7 @@ Specifically detect:
 - repeated user requests for the same issue
 - "again", "still broken", "not working", or similar escalation signals
 - cases where the agent claimed completion before the repo matched that claim
+- cases where the agent treated one 403, 429, 500, timeout, empty result, selector miss, or failed command as proof that a capability was permanently broken
 
 ### 4. Build The Historical Change Map
 
@@ -150,6 +152,8 @@ Group verified findings into:
 - minor anomalies
 - documentation drift
 - agent behavior issues
+
+Treat an unproven transient failure encoded as a permanent gate, hidden feature, unavailable state, or removed rotation option as critical when it changes user-visible behavior or operational capability.
 
 Every anomaly entry should include:
 
